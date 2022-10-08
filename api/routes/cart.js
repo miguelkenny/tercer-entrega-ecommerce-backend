@@ -7,7 +7,6 @@ const routes = Router();
 //CREATE CART
 routes.post('/', verifyToken, async (req, res) => {
     const newCart = new Cart(req.body)
-    console.log(newCart);
     try {
         const savedCart = await newCart.save()
         res.status(200).json(savedCart)

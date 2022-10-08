@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import StripeCheckout from "react-stripe-checkout"
 import { useEffect, useState } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
+import axios from "axios"
 
 const KEY = process.env.REACT_APP_STRIPE
 
@@ -175,6 +176,7 @@ const Cart = () => {
 
     const makeRequest = async () => {
       try {
+        const res = await axios.post('http://localhost:5000/api/checkout/payment', {cart})
         navigate("/success")
       } catch (error) {
         console.log('Error: ', error);

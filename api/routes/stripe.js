@@ -1,10 +1,11 @@
 import { Router } from 'express'
 import Stripe from 'stripe';
-
+import sendInfoEmail from '../Nodemailer/SendEmail.js'
 const routes = Router()
 const stripe = new Stripe(process.env.STRIPE_KEY);
 
 routes.post('/payment', (req, res) => {
+    sendInfoEmail(req.body)
     stripe.charges.create(
         {
             source: req.body.tokenId,

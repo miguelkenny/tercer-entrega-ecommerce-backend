@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 authRoutes.post('/register', upload.single("file"), async (req, res) => {
-    
+    const register = 1
     const { file, body } = req
     
     if (file && body) {
@@ -48,7 +48,7 @@ authRoutes.post('/register', upload.single("file"), async (req, res) => {
 
         try {
             const savedUser = newUser.save()
-            sendInfoEmail(req.body)
+            sendInfoEmail(req.body, register)
             res.status(201).json(savedUser);
         } catch (error) {
             res.status(500).json(error)

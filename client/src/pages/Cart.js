@@ -164,7 +164,7 @@ const Button = styled.button`
 const Cart = () => {
   const cart = useSelector(state => state.cart)
   const file = useSelector(state => state.user.currentUser.file)
-  
+
   const [stripeToken, setStripeToken] = useState(null)
   const navigate = useNavigate()
 
@@ -176,8 +176,8 @@ const Cart = () => {
 
     const makeRequest = async () => {
       try {
-        const res = await axios.post('http://localhost:5000/api/checkout/payment', {cart})
-        navigate("/success")
+        const res = await axios.post('http://localhost:5000/api/checkout/payment', { cart, tokenId: stripeToken })
+        navigate("/success", res)
       } catch (error) {
         console.log('Error: ', error);
       }
@@ -186,7 +186,7 @@ const Cart = () => {
   }, [stripeToken, cart.total, navigate])
 
   const handleClickVaciarCarrito = async () => {
-    
+
   }
 
   return (

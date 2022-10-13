@@ -5,7 +5,7 @@ import { verifyTokenAndAdmin } from './verifyToken.js'
 const routes = Router()
 
 //CREATE PRODUCT
-routes.post('/', verifyTokenAndAdmin, async (req, res) => {
+routes.post('/', /* verifyTokenAndAdmin, */ async (req, res) => {
     const newProduct = new Product(req.body)
 
     try {
@@ -34,7 +34,7 @@ routes.put('/:id', verifyTokenAndAdmin, async (req, res) => {
 })
 
 //DELETE
-routes.delete('/:id', verifyTokenAndAdmin, async (req, res) => {
+routes.delete('/:id', /* verifyTokenAndAdmin, */ async (req, res) => {
     try {
         await Product.findByIdAndDelete(req.params.id)
         res.status(200).json('Producto eliminado exitosamente...')

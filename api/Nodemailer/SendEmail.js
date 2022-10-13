@@ -3,7 +3,7 @@ import { createTransport } from 'nodemailer'
 
 const adminEmail = 'miguelcastrokenny@gmail.com'
 
-const sendInfoEmail = async (user, option) => {
+const sendInfoEmail = async (body, option) => {
 
     const transport = createTransport({
         service: 'gmail',
@@ -18,11 +18,11 @@ const sendInfoEmail = async (user, option) => {
         switch (key) {
             case 1:
                 return `Datos de Nuevo Usuario Registrado:
-                ${JSON.stringify(user)}`
+                ${JSON.stringify(body)}`
 
             case 2:
                 return `Datos de Nueva Venta:
-                    ${JSON.stringify(user)}`
+                    ${JSON.stringify(body)}`
             default:
                 break;
         }
@@ -31,7 +31,7 @@ const sendInfoEmail = async (user, option) => {
     const mailOptions = {
         from: 'Women Shop',
         to: `${adminEmail}`,
-        subject: 'Nuevo Registro',
+        subject: option === 1 ? 'Nuevo Registro' : 'Nueva Venta Generada',
         html: sendInfoRegisterOrSale(option)
     }
     try {

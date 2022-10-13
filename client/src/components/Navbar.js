@@ -94,7 +94,7 @@ const Navbar = () => {
     
     localStorage.removeItem('persist:root')
 
-    navigate('/', user)
+    navigate('/')
 
   }
 

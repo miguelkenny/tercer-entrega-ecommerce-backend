@@ -3,7 +3,7 @@ import { expect } from "chai";
 
 let request;
 
-describe("Test sobre API REST FULl", () => {
+describe("Test sobre API REST FULL", () => {
   before(() => {
     request = supertest("http://localhost:5000");
   });

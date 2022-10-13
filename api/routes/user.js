@@ -35,7 +35,7 @@ routes.delete('/:id', verifyTokenAndAuthorization, async (req, res) => {
 })
 
 //GET USER
-routes.get('/find/:id', /* verifyTokenAndAdmin, */ async (req, res) => {
+routes.get('/find/:id', verifyTokenAndAdmin, async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
         const { password, ...others } = user._doc
@@ -48,7 +48,7 @@ routes.get('/find/:id', /* verifyTokenAndAdmin, */ async (req, res) => {
 })
 
 //GET ALL USERS
-routes.get('/', /* verifyTokenAndAdmin, */ async (req, res) => {
+routes.get('/', verifyTokenAndAdmin, async (req, res) => {
     const query = req.query.new
     try {
         const users = query ? await User.find().sort({ _id: -1 }).limit(5) : await User.find()
